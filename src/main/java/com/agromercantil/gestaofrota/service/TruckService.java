@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TruckService {
@@ -60,5 +61,30 @@ public class TruckService {
         return truckRepository.save(truck);
     }
 
-    // Outros métodos como listar, atualizar, etc.
+    public List<Truck> getAllTrucks() {
+        return truckRepository.findAll();
+    }
+
+    public Truck updateTruck(Long id, TruckUpdateDTO truckUpdateDTO) {
+        Optional<Truck> optionalTruck = truckRepository.findById(id);
+        if (optionalTruck.isPresent()) {
+            Truck truck = optionalTruck.get();
+            truck.setBrand(truckUpdateDTO.getBrand());
+            truck.setModel(truckUpdateDTO.getModel());
+
+            return truckRepository.save(truck);
+
+        } else {
+            throw new IllegalArgumentException("Caminhão não encontrado.");
+        }
+    }
+
+    @Transactional
+    public void deleteTruck(Long id) {
+        if (truckRepository.existsById(id)) {
+            truckRepository.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("Caminhão não encontrado.");
+        }
+    }
 }
