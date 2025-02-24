@@ -1,5 +1,4 @@
 package com.agromercantil.gestaofrota.integration.dto;
-import java.util.List;
 
 public class FipePrice {
     private String valor;

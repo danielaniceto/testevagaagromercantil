@@ -1,4 +1,5 @@
 package com.agromercantil.gestaofrota.service;
+
 import com.agromercantil.gestaofrota.client.FipeClient;
 import com.agromercantil.gestaofrota.integration.dto.FipePrice;
 import com.agromercantil.gestaofrota.model.Truck;
