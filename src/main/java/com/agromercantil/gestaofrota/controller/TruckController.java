@@ -40,7 +40,11 @@ public class TruckController {
     // Deletar um caminhão com base no seu ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTruck(@PathVariable Long id) {
-        truckService.deleteTruck(id);
-        return ResponseEntity.noContent().build();
+        try {
+            truckService.deleteTruck(id);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
