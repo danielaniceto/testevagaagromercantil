@@ -17,3 +17,4 @@ public class BrandDTO {
         this.nome = nome;
     }
 }
+
